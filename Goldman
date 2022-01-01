@@ -1,0 +1,58 @@
+q1->class Solution{
+  public:
+    vector<vector<string> > Anagrams(vector<string>& string_list) {
+   
+        vector<vector<string>>res;
+        unordered_map<string,vector<string>>mp;
+        for(int i=0;i<string_list.size();i++){
+            string x=string_list[i];
+            sort(x.begin(),x.end());
+            mp[x].push_back(string_list[i]);
+        }
+        for(auto it:mp){
+            res.push_back(it.second);
+        }
+        return res;
+        
+    }
+};
+
+
+
+
+Q2->
+class Solution {
+  public:
+    int doOverlap(int L1[], int R1[], int L2[], int R2[]) {
+        // code here
+        if(L1[0]>R2[0] || L2[0]>R1[0]) return false;
+        if(R1[1]>L2[1] || R2[1]>L1[1]) return false;
+        return true;
+    }
+};
+
+
+Q3->
+class Solution{
+  public:
+    int countSubArrayProductLessThanK(const vector<int>& nums, int n, long long k) {
+        int i=0,j=0;
+        long long ans=1;
+      long long count=0;
+        while(j<nums.size()){
+            ans*=nums[j];
+            if(ans<k){
+                count+=j-i+1;
+            }else if(ans>=k){
+                while(ans>=k){
+                    ans/=nums[i];
+                    i++;
+                }
+                count+=j-i+1;
+            }
+            j++;
+            
+        }
+        return count;
+    }
+};
