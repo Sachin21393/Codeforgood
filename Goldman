@@ -105,4 +105,69 @@ q4->string encode(string src)
       if(str1+str2!=str2+str1) return "";
       else 
        return str1.substr(0,gcd(str1.length(),str2.length()));
-       
+
+       q->7
+         string ans;
+        stack<int> st;
+        int num = 1;
+        for(auto it:s){
+            if(it == 'D'){
+                st.push(num);
+                num++;
+            }else{
+                st.push(num);
+                num++;
+                while(!st.empty()){
+                    ans += to_string(st.top());
+                    st.pop();
+                }
+            }
+        }
+        st.push(num);
+        while(!st.empty()){
+            ans += to_string(st.top());
+            st.pop();
+        }
+        return ans;
+    }
+};
+
+q->8
+if (m <= n - k + 1)
+        return m + k - 1;
+ 
+  
+    m = m - (n - k + 1);
+ 
+    
+   if(m%n==0) return m;
+   else return m%n;
+   
+   q->9
+   	public:
+const int mod= 1e9+7;
+long long dp[10004];
+long long solve(string &s, int n)
+{
+if (s[0] == '0' || s[0]== ' ')
+return 0;
+if (n == 0 || n == 1)
+return 1;
+
+if(dp[n]!=-1)return dp[n]%mod;
+
+int count = 0;
+
+if (s[n - 1] > '0')
+count = solve(s, n - 1)%mod;
+
+if (s[n - 2] == '1' || (s[n - 2] == '2' && s[n - 1] < '7'))
+count = (count%mod + solve(s, n - 2)%mod)%mod;
+
+return dp[n]= count%mod;
+}
+int CountWays(string str){
+// Code here
+memset(dp,-1,sizeof dp);
+return solve(str,str.size())%1000000007;
+}
