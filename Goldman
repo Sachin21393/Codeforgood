@@ -171,3 +171,61 @@ int CountWays(string str){
 memset(dp,-1,sizeof dp);
 return solve(str,str.size())%1000000007;
 }
+
+Q 10->
+ stack<char> st;
+    for (int i = 0; i < s.length(); i++) {
+    
+        if (s[i] == ']') {
+            string temp;
+            while (!st.empty() && st.top() != '[') {
+              
+                temp = st.top() + temp;
+                st.pop();
+            }
+
+            st.pop();
+            string num;
+
+            while (!st.empty() && isdigit(st.top())) {
+                num = st.top() + num;
+                st.pop();
+            }
+            int number = stoi(num);
+            string repeat;
+            for (int j = 0; j < number; j++)
+                repeat += temp;
+            for (char c : repeat)
+                st.push(c);
+        }
+      
+        else
+            st.push(s[i]);
+    }
+    string res;
+    while (!st.empty()) {
+        res = st.top() + res;
+        st.pop();
+    }
+    return res;
+    
+    Q 11->
+      int *ans=new int[2];
+        unordered_map<int,int> mp;
+        for(int i=0;i<n;i++){
+            mp[arr[i]]++;
+        }
+       for(int i=1;i<n+1;i++){
+           if(mp[arr[i]]>1){
+               ans[0]=arr[i];
+           }
+       }
+        for(int i=1;i<=n;i++){
+            if(mp[i]==0){
+                ans[1]=i;
+                break;
+            }
+        }
+        return ans;
+        
+	q 12-> can be done by using priority_queue
