@@ -1,0 +1,227 @@
+q1-> int dp[501][201][2];
+  int solve(int k,int n,int a[],int cur,int buy){
+      if(cur>=n) return 0;
+      if(!k) return 0;
+      if(dp[cur][k][buy]!=-1) return dp[cur][k][buy];
+      
+      if(buy){
+          int sell=a[cur]+solve(k-1,n,a,cur+1,0);
+          int notsell=solve(k,n,a,cur+1,buy);
+          return dp[cur][k][buy]= max(sell,notsell);
+      }else{
+          int buy1=solve(k,n,a,cur+1,1)-a[cur];
+          int notbuy1=solve(k,n,a,cur+1,buy);
+          return dp[cur][k][buy]=max(buy1,notbuy1);
+      }
+      
+  }
+    int maxProfit(int K, int N, int A[]) {
+        // code here
+        memset(dp,-1,sizeof(dp));
+        return solve(K,N,A,0,0);
+     
+        }
+    
+};
+q2->/
+ int dp[501][201][2];
+  int solve(int k,int n,int a[],int cur,int buy){
+      if(cur>=n) return 0;
+      if(!k) return 0;
+      if(dp[cur][k][buy]!=-1) return dp[cur][k][buy];
+      
+      if(buy){
+          int sell=a[cur]+solve(k-1,n,a,cur+1,0);
+          int notsell=solve(k,n,a,cur+1,buy);
+          return dp[cur][k][buy]= max(sell,notsell);
+      }else{
+          int buy1=solve(k,n,a,cur+1,1)-a[cur];
+          int notbuy1=solve(k,n,a,cur+1,buy);
+          return dp[cur][k][buy]=max(buy1,notbuy1);
+      }
+      
+  }
+    int maxProfit(int K, int N, int A[]) {
+        // code here
+        memset(dp,-1,sizeof(dp));
+        return solve(K,N,A,0,0);
+     
+        }
+    
+};
+q3-> int dp[501][201][2];
+  int solve(int k,int n,int a[],int cur,int buy){
+      if(cur>=n) return 0;
+      if(!k) return 0;
+      if(dp[cur][k][buy]!=-1) return dp[cur][k][buy];
+      
+      if(buy){
+          int sell=a[cur]+solve(k-1,n,a,cur+1,0);
+          int notsell=solve(k,n,a,cur+1,buy);
+          return dp[cur][k][buy]= max(sell,notsell);
+      }else{
+          int buy1=solve(k,n,a,cur+1,1)-a[cur];
+          int notbuy1=solve(k,n,a,cur+1,buy);
+          return dp[cur][k][buy]=max(buy1,notbuy1);
+      }
+      
+  }
+    int maxProfit(int K, int N, int A[]) {
+        // code here
+        memset(dp,-1,sizeof(dp));
+        return solve(K,N,A,0,0);
+     
+        }
+    
+};
+24->
+    public:
+    void linkdelete(struct Node  *head, int M, int N)
+    {
+      struct Node *p;
+       struct Node *q;
+       p=head;
+       while(1){
+           for(int i=0; i<M-1 ;i++){
+               if(p==NULL)
+                   return;
+               p=p->next;
+           }
+           if(p==NULL)
+               return;
+           q=p;
+           for(int i=0; i<N ;i++){
+               if(q==NULL){
+                   p->next=NULL;
+                   return;
+               }
+               q=q->next;
+           }
+           if(q==NULL){
+                   p->next=NULL;
+                   return;
+               }
+           p->next=q->next;
+           p=q->next;
+       }
+       q5->
+           int data;
+    Node* left;
+    Node* right;
+}; */
+
+
+class Solution
+{
+    public:
+    //Function to serialize a tree and return a list containing nodes of tree.
+  void helper2(Node *root,vector<int>&a) 
+    {
+        if(root==NULL)
+        {
+            a.push_back(int(NULL));
+            return;
+        }
+        a.push_back(root->data);
+        helper2(root->left,a);
+        helper2(root->right,a);
+        return ;
+        
+    }
+    //Function to serialize a tree and return a list containing nodes of tree.
+    vector<int> serialize(Node *root) 
+    {
+        vector<int>a;
+        helper2(root,a);
+        return a;
+    }
+    
+    
+    //Function to deserialize a list and construct the tree.
+   int idx=0;
+    Node * deSerialize(vector<int> &a)
+    {
+        if((a.size()-1)<idx||a[idx]==NULL)
+       {
+           idx++;
+           return NULL;
+       }
+       Node*root=new Node(a[idx++]);
+       root->left=deSerialize(a);
+       root->right=deSerialize(a);
+       return root;
+    }
+
+};
+q6->    {
+        // your code here
+        string result = "";
+while(n){
+char c = 'A' + (n - 1) %26;
+result = c + result;
+n = (n - 1)/26;
+
+}
+return result;
+    }
+};
+q7->    {
+        // your code here
+     queue<int> q;
+		    string temp="";
+		    int arr[26]={0};
+		    for(int i=0;i<A.size();i++){
+		        arr[A[i]-'a']++;
+		        if(arr[A[i]-'a']==1){
+		            q.push(A[i]);
+		        }
+		        while(!q.empty() && arr[q.front()-'a']!=1){
+		            q.pop();
+		        }
+		        if(q.empty()){
+		            A[i]='#';
+		        }else{
+		            A[i]=q.front();
+		        }
+		    }
+		    return A;
+		}
+    q8->
+       int size = arr.size();
+        int *prefix = new int[size+1]();
+        
+        int *suffix = new int[size+1]();
+      
+        
+        prefix[0] = 0;
+        for(int i = 1 ; i < size ; i ++) {
+        
+            
+            if(arr[i] > arr[i - 1]) {
+                prefix[i] = prefix[i-1] + 1;
+            }
+            else {
+                prefix[i] = 0;
+            }
+        }
+        
+        suffix[size-1] = 0;
+       for(int i = size -1  ; i > 0 ; i--) {
+       
+           if(arr[i-1] > arr[i]) {
+               suffix[i - 1] = suffix[i] + 1;
+           }
+           else {
+               suffix[i-1] = 0;
+           }
+      }
+    
+      int ans = 0;
+      for(int i = 0 ; i < size ; i ++) {
+         if(prefix[i] > 0 && suffix[i] > 0)
+             ans = max(prefix[i]+ suffix[i] + 1,  ans); 
+       }
+       
+       return (ans < 3 ? 0 : ans);
+
+    }
