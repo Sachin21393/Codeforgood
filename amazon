@@ -24,55 +24,47 @@ q1-> int dp[501][201][2];
     
 };
 q2->/
- int dp[501][201][2];
-  int solve(int k,int n,int a[],int cur,int buy){
-      if(cur>=n) return 0;
-      if(!k) return 0;
-      if(dp[cur][k][buy]!=-1) return dp[cur][k][buy];
-      
-      if(buy){
-          int sell=a[cur]+solve(k-1,n,a,cur+1,0);
-          int notsell=solve(k,n,a,cur+1,buy);
-          return dp[cur][k][buy]= max(sell,notsell);
-      }else{
-          int buy1=solve(k,n,a,cur+1,1)-a[cur];
-          int notbuy1=solve(k,n,a,cur+1,buy);
-          return dp[cur][k][buy]=max(buy1,notbuy1);
-      }
-      
-  }
-    int maxProfit(int K, int N, int A[]) {
+ vector<vector<string>> displayContacts(int n, string contact[], string s)
+    {
         // code here
-        memset(dp,-1,sizeof(dp));
-        return solve(K,N,A,0,0);
-     
-        }
-    
+        set<string>mp;
+       vector<vector<string>>ans(s.size());
+       for(int i=0;i<n;i++){
+           mp.insert(contact[i]);
+       }
+       for(int i=0;i<s.size();i++){
+           for(auto it:mp){
+               if(s.substr(0,i+1)==it.substr(0,i+1)){
+                   ans[i].push_back(it);
+               }
+           }
+           if(ans[i].size()==0){
+               ans[i].push_back(to_string(0));
+           }
+       }
+       return ans;
+    }
 };
-q3-> int dp[501][201][2];
-  int solve(int k,int n,int a[],int cur,int buy){
-      if(cur>=n) return 0;
-      if(!k) return 0;
-      if(dp[cur][k][buy]!=-1) return dp[cur][k][buy];
-      
-      if(buy){
-          int sell=a[cur]+solve(k-1,n,a,cur+1,0);
-          int notsell=solve(k,n,a,cur+1,buy);
-          return dp[cur][k][buy]= max(sell,notsell);
-      }else{
-          int buy1=solve(k,n,a,cur+1,1)-a[cur];
-          int notbuy1=solve(k,n,a,cur+1,buy);
-          return dp[cur][k][buy]=max(buy1,notbuy1);
-      }
-      
-  }
-    int maxProfit(int K, int N, int A[]) {
+q3-> vector<vector<string>> displayContacts(int n, string contact[], string s)
+    {
         // code here
-        memset(dp,-1,sizeof(dp));
-        return solve(K,N,A,0,0);
-     
-        }
-    
+        set<string>mp;
+       vector<vector<string>>ans(s.size());
+       for(int i=0;i<n;i++){
+           mp.insert(contact[i]);
+       }
+       for(int i=0;i<s.size();i++){
+           for(auto it:mp){
+               if(s.substr(0,i+1)==it.substr(0,i+1)){
+                   ans[i].push_back(it);
+               }
+           }
+           if(ans[i].size()==0){
+               ans[i].push_back(to_string(0));
+           }
+       }
+       return ans;
+    }
 };
 24->
     public:
@@ -225,3 +217,155 @@ q7->    {
        return (ans < 3 ? 0 : ans);
 
     }
+    Q9-> int isValid(vector<vector<int>> mat){
+        int row[9][9]={0},col[9][9]={0},box[9][9]={0};
+        for(int i=0;i<9;i++)
+        {
+            for(int j=0;j<9;j++)
+            {
+                if(mat[i][j]!=0){
+                row[i][mat[i][j]-1]++;
+                col[j][mat[i][j]-1]++;
+                box[(i/3)*3 + j/3][mat[i][j]-1]++;
+                if(row[i][mat[i][j]-1]>1 || col[j][mat[i][j]-1]>1 || box[(i/3)*3 + j/3][mat[i][j]-1]>1)
+                return 0;
+                }
+                
+            }
+        }
+        return 1;
+    }
+};
+Q10->
+ int isValid(vector<vector<int>> mat){
+        int row[9][9]={0},col[9][9]={0},box[9][9]={0};
+        for(int i=0;i<9;i++)
+        {
+            for(int j=0;j<9;j++)
+            {
+                if(mat[i][j]!=0){
+                row[i][mat[i][j]-1]++;
+                col[j][mat[i][j]-1]++;
+                box[(i/3)*3 + j/3][mat[i][j]-1]++;
+                if(row[i][mat[i][j]-1]>1 || col[j][mat[i][j]-1]>1 || box[(i/3)*3 + j/3][mat[i][j]-1]>1)
+                return 0;
+                }
+                
+            }
+        }
+        return 1;
+    }
+};
+Q11->
+ int isValid(vector<vector<int>> mat){
+        int row[9][9]={0},col[9][9]={0},box[9][9]={0};
+        for(int i=0;i<9;i++)
+        {
+            for(int j=0;j<9;j++)
+            {
+                if(mat[i][j]!=0){
+                row[i][mat[i][j]-1]++;
+                col[j][mat[i][j]-1]++;
+                box[(i/3)*3 + j/3][mat[i][j]-1]++;
+                if(row[i][mat[i][j]-1]>1 || col[j][mat[i][j]-1]>1 || box[(i/3)*3 + j/3][mat[i][j]-1]>1)
+                return 0;
+                }
+                
+            }
+        }
+        return 1;
+    }
+};
+Q12->
+ vector<vector<string>> displayContacts(int n, string contact[], string s)
+    {
+        // code here
+        set<string>mp;
+       vector<vector<string>>ans(s.size());
+       for(int i=0;i<n;i++){
+           mp.insert(contact[i]);
+       }
+       for(int i=0;i<s.size();i++){
+           for(auto it:mp){
+               if(s.substr(0,i+1)==it.substr(0,i+1)){
+                   ans[i].push_back(it);
+               }
+           }
+           if(ans[i].size()==0){
+               ans[i].push_back(to_string(0));
+           }
+       }
+       return ans;
+    }
+};
+q13->    //when order does not matter.
+    long long countWays(int n)
+    {
+        // your code here
+           return n/2+1;
+    }
+};
+q14->class Solution {
+public:
+int orangesRotting(vector<vector<int>>& grid) {
+        if(grid.empty()) return 0;
+        int m = grid.size(), n = grid[0].size(), days = 0, tot = 0, cnt = 0;
+        queue<pair<int, int>> rotten;
+        for(int i = 0; i < m; ++i){
+            for(int j = 0; j < n; ++j){
+                if(grid[i][j] != 0) tot++;
+                if(grid[i][j] == 2) rotten.push({i, j});
+            }
+        }
+        
+        int dx[4] = {0, 0, 1, -1};
+        int dy[4] = {1, -1, 0, 0};
+        
+        while(!rotten.empty()){
+            int k = rotten.size();
+            cnt += k; 
+            while(k--){
+                int x = rotten.front().first, y = rotten.front().second;
+                rotten.pop();
+                for(int i = 0; i < 4; ++i){
+                    int nx = x + dx[i], ny = y + dy[i];
+                    if(nx < 0 || ny < 0 || nx >= m || ny >= n || grid[nx][ny] != 1) continue;
+                   else if(grid[nx][ny]==1){
+                     grid[nx][ny] = 2;
+                    rotten.push({nx, ny});
+                                           }
+                }
+            }
+            if(!rotten.empty()) days++;
+        }
+        
+        return tot == cnt ? days : -1;
+    }
+   
+};
+q15->int solve(int arr[], int i, int j){
+    if(i>=j)
+        return 0;
+    if(dp[i][j]!=-1){
+        return dp[i][j];
+    }
+    int ans = INT_MAX;
+    for(int k=i;k<=j-1;k++){
+        int left,right;
+        if(dp[i][k]!=-1)
+            left = dp[i][k];
+        else 
+            left = solve(arr,i,k);
+        if(dp[k+1][j]!=-1)
+            right = dp[k+1][j];
+        else 
+            right = solve(arr,k+1,j); 
+        int temp = left+right+ arr[i-1]*arr[k]*arr[j];
+        if(temp<ans){
+            ans = temp;
+            bracket[i][j]=k;
+        }
+    }
+    return dp[i][j] = ans;
+}
+
