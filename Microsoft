@@ -1,0 +1,236 @@
+q1->  int solve(int arr[], int n, int sum){
+       bool dp[n+1][sum+1];
+        for(int i=0;i<sum+1;i++){
+            dp[0][i]=0;
+        }
+        for(int i=0;i<=n;i++)
+            dp[i][0]=1;
+            
+        for(int i=1;i<n+1;i++){
+            for(int j=1;j<sum+1;j++){
+                if(arr[i-1]<=j)
+                {
+                    dp[i][j]=  dp[i-1][j-arr[i-1]] or dp[i-1][j];
+                }
+                else
+                {
+                    dp[i][j]= dp[i-1][j];
+                }
+            }
+        }
+        
+        vector<int> v;
+
+        for(int i = 0; i<(sum+1); i++){
+            if(dp[n][i]==true){
+                v.push_back(i);
+                
+            }
+        }
+        
+
+        int rr = abs(sum - 2*v[v.size()/2]);
+        return rr;
+    }
+      
+	int minDifference(int arr[], int n)  { 
+	    // Your code goes here
+	    
+	    int sum = 0;
+	    for(int i=0; i<n; i++){
+	        sum+=arr[i];
+	    }
+	    return solve(arr,n,sum);
+	
+	}
+  Q2->
+  void rotate(int n,int a[][n])
+{
+    //code herer
+      for(int i=0;i<n;i++){
+        for(int j=i;j<n;j++){
+            int temp=a[i][j];
+            a[i][j]=a[j][i];
+            a[j][i]=temp;
+        }
+    }
+    for(int i=0;i<n;i++){
+        int st=0,en=n-1;
+        while(st<en){
+          int temp=a[st][i];
+          a[st][i]=a[en][i];
+          a[en][i]=temp;
+            st++;
+            en--;
+        }
+        
+    }
+    Q3->   // Your code here
+       stack<pair<int,int>>s;
+       vector<int>ans;
+       for(int i=0;i<n;i++ ){
+           int day=1;
+           while(!s.empty() and s.top().first<=price[i]){
+               day+=s.top().second;
+               s.pop();
+           }
+           s.push({price[i],day});
+           ans.push_back(day);
+       }
+       return ans;
+       q4->   int dp[10001];
+    int solve(int arr[],int n){
+               if(n<=0) return 0;
+               if(dp[n]!=-1){
+                   return dp[n];
+               }
+        
+        
+        return dp[n]= max(arr[n-1]+solve(arr,n-2),solve(arr,n-1));
+    }
+    //Function to find the maximum money the thief can get.
+    int FindMaxSum(int arr[], int n)
+    {
+memset(dp,-1,sizeof(dp));
+int ans=solve(arr,n);
+return ans;
+    }
+    Q5-> void bfs(int i,int j,vector<vector<int>>& grid,int &count,int n,int m){
+       queue<pair<int,int>>q;
+       q.push({i,j});
+       vector<pair<int,int>>dir={{-1,0},{1,0},{0,1},{0,-1},{-1,-1},{1,1},{-1,1},{1,-1}};
+       
+       while(!q.empty()){
+           pair<int,int> node=q.front();
+           q.pop();
+           count++;
+           for(int i=0;i<dir.size();i++){
+               int x=node.first + dir[i].first;
+               int y=node.second + dir[i].second;
+               
+               if(x>=n || x<0 || y>=m || y<0 || grid[x][y]!=1)continue;
+               grid[x][y]=0;
+               q.push({x,y});
+           }
+       }
+   }
+   
+   int findMaxArea(vector<vector<int>>& grid) {
+       // Code here
+       
+       int maxcount=1;
+       int n=grid.size();
+       int m=grid[0].size();
+       
+       for(int i=0;i<n;i++){
+           for(int j=0;j<m;j++){
+               if(grid[i][j]==1){
+                   int count=-1;
+                   bfs(i,j,grid,count,n,m);
+                   maxcount=max(maxcount,count);
+               }
+           }
+       }
+       return maxcount;
+       Q6->
+       void solve(int n,vector<string>&ans){
+    string res="";
+    while(n){
+        int last=n%2;
+        res=to_string(last)+res;
+        n/=2;
+    }
+    ans.push_back(res);
+    
+}
+vector<string> generate(int N)
+{
+	// Your code here
+	vector<string>res;
+	for(int i=1;i<=N;i++){
+	    solve(i,res);
+	}
+	return res;
+}
+Q7->
+  void connect(Node *root)
+    {
+       // Your Code Here
+       queue<Node*>q;
+       q.push(root);
+       while(!q.empty()){
+           int n=q.size();
+           for(int i=0;i<n;i++){
+               Node* temp=q.front();
+               q.pop();
+               Node* cur=NULL;
+               if(!q.empty() && i!=n-1) cur=q.front();
+               temp->nextRight=cur;
+               if(temp->left) q.push(temp->left);
+               if(temp->right) q.push(temp->right);
+               Q8->
+               int cnt;
+int tar;
+int find(Node* root){
+    if(root==NULL)
+        return 0;
+   if(!root)
+    return 0;
+    
+    int Sum = root->data + find(root->left) + find(root->right);
+    
+    if(Sum == tar)
+    cnt++;
+    
+    return Sum;
+}
+int countSubtreesWithSumX(Node* root, int x)
+{
+	// Code herecnt=0;
+	cnt=0;
+	tar=x;
+	find(root);
+	return cnt;
+}
+Q9->
+int cnt;
+int tar;
+int find(Node* root){
+    if(root==NULL)
+        return 0;
+   if(!root)
+    return 0;
+    
+    int Sum = root->data + find(root->left) + find(root->right);
+    
+    if(Sum == tar)
+    cnt++;
+    
+    return Sum;
+}
+int countSubtreesWithSumX(Node* root, int x)
+{
+	// Code herecnt=0;
+	cnt=0;
+	tar=x;
+	find(root);
+	return cnt;
+}
+Q10->
+ int minSteps(int D){
+        // code here
+        int sum=0,step=0;
+        while(true){
+            sum+=step;
+            step++;
+            if(sum==D){
+                return step-1;
+                break;
+            }
+            if(sum>D && (sum-D)%2==0){
+                return step-1;
+                break;
+            }
+        }
+        return 0;
+    }
