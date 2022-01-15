@@ -233,4 +233,128 @@ Q10->
             }
         }
         return 0;
+	
+	Q11->
+	void getCombination(int arr[], int idx, int &N, string &curr, vector<string> &res, string map[]) {
+        if(idx == N) {
+            res.push_back(curr);
+            return;
+        }
+        
+        for(char ch : map[arr[idx]]) {
+            curr.push_back(ch);
+            getCombination(arr, idx+1, N, curr, res, map);
+            curr.pop_back();
+        }
     }
+    
+    vector<string> possibleWords(int a[], int N)
+    {
+        string curr = "";
+        vector<string> res;
+        string map[10] = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        
+        getCombination(a, 0, N, curr, res, map);
+        return res;
+    }
+    Q12->
+    vector<int> spirallyTraverse(vector<vector<int> > matrix, int r, int c) 
+   {
+       int total = r*c;
+       int startingRow=0;
+       int endingRow=r-1;
+       int startingCol=0;
+       int endingCol=c-1;
+       
+       vector<int> sp;
+       int count = 0;
+       while(count<total){
+           for(int i=startingCol;i<=endingCol && count<total;i++){
+               sp.push_back(matrix[startingRow][i]);
+               count++;
+           }
+           startingRow++;
+           for(int i = startingRow;i<=endingRow && count<total ;i++){
+               sp.push_back(matrix[i][endingCol]);
+               count++;
+           }
+           endingCol--;
+           for(int i = endingCol;i>=startingCol && count<total ;i--){
+               sp.push_back(matrix[endingRow][i]);
+               count++;
+           }
+           endingRow--;
+           for(int i=endingRow;i>=startingRow && count<total ;i--){
+               sp.push_back(matrix[i][startingCol]);
+               count++;
+           }
+           startingCol++;
+       }
+return sp;  
+} vector<int> spirallyTraverse(vector<vector<int> > matrix, int r, int c) 
+   {
+       int total = r*c;
+       int startingRow=0;
+       int endingRow=r-1;
+       int startingCol=0;
+       int endingCol=c-1;
+       
+       vector<int> sp;
+       int count = 0;
+       while(count<total){
+           for(int i=startingCol;i<=endingCol && count<total;i++){
+               sp.push_back(matrix[startingRow][i]);
+               count++;
+           }
+           startingRow++;
+           for(int i = startingRow;i<=endingRow && count<total ;i++){
+               sp.push_back(matrix[i][endingCol]);
+               count++;
+           }
+           endingCol--;
+           for(int i = endingCol;i>=startingCol && count<total ;i--){
+               sp.push_back(matrix[endingRow][i]);
+               count++;
+           }
+           endingRow--;
+           for(int i=endingRow;i>=startingRow && count<total ;i--){
+               sp.push_back(matrix[i][startingCol]);
+               count++;
+           }
+           startingCol++;
+       }
+return sp;  
+} vector<int> spirallyTraverse(vector<vector<int> > matrix, int r, int c) 
+   {
+       int total = r*c;
+       int startingRow=0;
+       int endingRow=r-1;
+       int startingCol=0;
+       int endingCol=c-1;
+       
+       vector<int> sp;
+       int count = 0;
+       while(count<total){
+           for(int i=startingCol;i<=endingCol && count<total;i++){
+               sp.push_back(matrix[startingRow][i]);
+               count++;
+           }
+           startingRow++;
+           for(int i = startingRow;i<=endingRow && count<total ;i++){
+               sp.push_back(matrix[i][endingCol]);
+               count++;
+           }
+           endingCol--;
+           for(int i = endingCol;i>=startingCol && count<total ;i--){
+               sp.push_back(matrix[endingRow][i]);
+               count++;
+           }
+           endingRow--;
+           for(int i=endingRow;i>=startingRow && count<total ;i--){
+               sp.push_back(matrix[i][startingCol]);
+               count++;
+           }
+           startingCol++;
+       }
+return sp;  
+}
